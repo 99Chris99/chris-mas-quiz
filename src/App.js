@@ -4,16 +4,16 @@ import './App.css';
 import { Form, Checkbox, Button } from 'semantic-ui-react'
 
 const questions =  {
-  Q1: 'Q1zz',
-  Q2: 'Q2',
-  Q3: 'Q3',
-  Q4: 'Q4',
-  Q5: 'Q5',
-  Q6: 'Q6',
-  Q7: 'Q7',
-  Q8: 'Q8',
-  Q9: 'Q9',
-  Q10: 'Q10'
+  Q1: 'Life is good, great things have happened to you, what alcoholic drink to you pick to celebrate?',
+  Q2: 'Favourite Film...of all time?',
+  Q3: 'Favourite TV Show you have ever seen?',
+  Q4: 'Favourite Item of clothing who have once owned (describe it a little)?',
+  Q5: `You're on death row, its you last meal, pick your starter main course, and dessert?`,
+  Q6: 'If Brexit gets too much and you move have to move another country, money no object, where do you go?',
+  Q7: `That one country you've always wanted to vist, but never made it?`,
+  Q8: `Time travel has been invented, which year/period/decade etc do you go to first?`,
+  Q9: 'Desert island book?',
+  Q10:`The Song you couldn't listening to this year?`
   }
 
 export class App extends Component {
@@ -189,26 +189,11 @@ this.setState({
         render() {
           
           return (
-    // <div className="App">
-    //   <header className="App-header">
-    //     <img src={logo} className="App-logo" alt="logo" />
-    //     <p>
-    //       Edit <code>src/App.js</code> and save to reload.
-    //     </p>
-    //     <a
-    //       className="App-link"
-    //       href="https://reactjs.org"
-    //       target="_blank"
-    //       rel="noopener noreferrer"
-    //     >
-    //       Learn React
-    //     </a>
-    //   </header>
-    // </div>
-<div>
 
-<header className="App-headerZZ">
-Christmas Quiz 2019
+<div style={{padding:'10px'}}>
+
+<header>
+<h1>Chris'mas Quiz 2019</h1>
 
 </header>
 <br></br>
@@ -220,43 +205,43 @@ Christmas Quiz 2019
     </Form.Field>
     <Form.Field>
       <label>Q1. {questions.Q1}</label>
-      <input id='Q1' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q1} placeholder='Answer' />
+      <input id='Q1' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q1} placeholder='Q1 Answer' />
     </Form.Field>
     <Form.Field>
       <label>Q2. {questions.Q2}</label>
-      <input id='Q2' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q2} placeholder='Answer' />
+      <input id='Q2' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q2} placeholder='Q2 Answer' />
     </Form.Field>
     <Form.Field>
       <label>Q3. {questions.Q3}</label>
-      <input id='Q3' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q3} placeholder='Answer' />
+      <input id='Q3' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q3} placeholder='Q3 Answer' />
     </Form.Field>
     <Form.Field>
       <label>Q4. {questions.Q4}</label>
-      <input id='Q4' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q4} placeholder='Answer' />
+      <input id='Q4' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q4} placeholder='Q4 Answer' />
     </Form.Field>
     <Form.Field>
       <label>Q5. {questions.Q5}</label>
-      <input id='Q5' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q5} placeholder='Answer' />
+      <input id='Q5' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q5} placeholder='Q5 Answer' />
     </Form.Field>
     <Form.Field>
       <label>Q6. {questions.Q6}</label>
-      <input id='Q6' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q6} placeholder='Answer' />
+      <input id='Q6' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q6} placeholder='Q6 Answer' />
     </Form.Field>
     <Form.Field>
       <label>Q7. {questions.Q7}</label>
-      <input id='Q7' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q7} placeholder='Answer' />
+      <input id='Q7' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q7} placeholder='Q7 Answer' />
     </Form.Field>
     <Form.Field>
       <label>Q8. {questions.Q8}</label>
-      <input id='Q8' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q8} placeholder='Answer' />
+      <input id='Q8' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q8} placeholder='Q8 Answer' />
     </Form.Field>
     <Form.Field>
       <label>Q9. {questions.Q9}</label>
-      <input id='Q9' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q9} placeholder='Answer' />
+      <input id='Q9' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q9} placeholder='Q9 Answer' />
     </Form.Field>
     <Form.Field>
       <label>Q10. {questions.Q10}</label>
-      <input id='Q10' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q10} placeholder='Answer' />
+      <input id='Q10' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q10} placeholder='Q10 Answer' />
     </Form.Field>
     
     <Button type='submit'>Submit</Button>
@@ -273,6 +258,24 @@ Christmas Quiz 2019
 
 <h4>Q1. {questions.Q1}</h4>
 <p>{this.state.displayResults ? this.mapDisplayAll('Q1') : ''}</p>
+<h4>Q2. {questions.Q2}</h4>
+<p>{this.state.displayResults ? this.mapDisplayAll('Q2') : ''}</p>
+<h4>Q3. {questions.Q3}</h4>
+<p>{this.state.displayResults ? this.mapDisplayAll('Q3') : ''}</p>
+<h4>Q4. {questions.Q4}</h4>
+<p>{this.state.displayResults ? this.mapDisplayAll('Q4') : ''}</p>
+<h4>Q5. {questions.Q5}</h4>
+<p>{this.state.displayResults ? this.mapDisplayAll('Q5') : ''}</p>
+<h4>Q6. {questions.Q6}</h4>
+<p>{this.state.displayResults ? this.mapDisplayAll('Q6') : ''}</p>
+<h4>Q7. {questions.Q7}</h4>
+<p>{this.state.displayResults ? this.mapDisplayAll('Q7') : ''}</p>
+<h4>Q8. {questions.Q8}</h4>
+<p>{this.state.displayResults ? this.mapDisplayAll('Q8') : ''}</p>
+<h4>Q9. {questions.Q9}</h4>
+<p>{this.state.displayResults ? this.mapDisplayAll('Q9') : ''}</p>
+<h4>Q10. {questions.Q1}</h4>
+<p>{this.state.displayResults ? this.mapDisplayAll('Q10') : ''}</p>
 
 </div>
 
