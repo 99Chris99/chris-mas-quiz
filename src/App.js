@@ -1,0 +1,289 @@
+import React, { Component} from 'react';
+import logo from './logo.svg';
+import './App.css';
+import { Form, Checkbox, Button } from 'semantic-ui-react'
+
+const questions =  {
+  Q1: 'Q1zz',
+  Q2: 'Q2',
+  Q3: 'Q3',
+  Q4: 'Q4',
+  Q5: 'Q5',
+  Q6: 'Q6',
+  Q7: 'Q7',
+  Q8: 'Q8',
+  Q9: 'Q9',
+  Q10: 'Q10'
+  }
+
+export class App extends Component {
+
+state = {
+currentName: '',
+Q1: '',
+Q2: '',
+Q3: '',
+Q4: '',
+Q5: '',
+Q6: '',
+Q7: '',
+Q8: '',
+Q9: '',
+Q10:'',
+results: null,
+showResults: false,
+buttonReveal: false,
+revealNames: false,
+displayResults: false
+}
+
+setName = (event) => {
+  this.setState({
+    currentName: event.target.value
+  })
+}
+
+
+setAnswer = (event) => {
+  let idQ = event.target.id
+  console.log(idQ)
+
+  this.setState({
+    [idQ]: event.target.value
+  })
+}
+
+buttonReveal = (name) => {
+let output = ''
+  if ( name === 'Chris') {
+   output = true
+  }else {
+    output = false
+  }
+this.setState({
+  buttonReveal:output
+})
+}
+
+
+  submitAnswers = (event) => {
+//event.preventdefault()
+    this.buttonReveal(this.state.currentName)
+    const name = this.state.currentName
+    const submission = 
+      {Q1: this.state.Q1,
+      Q2: this.state.Q2,
+      Q3: this.state.Q3,
+      Q4: this.state.Q4,
+      Q5: this.state.Q5,
+      Q6: this.state.Q6,
+      Q7: this.state.Q7,
+      Q8: this.state.Q8,
+      Q9: this.state.Q9,
+      Q10: this.state.Q10}
+      
+
+    this.setState({
+      results: {...this.state.results,[this.state.currentName]:submission}
+      
+    })
+
+    this.setState({
+      currentName: '',
+      Q1: '',
+      Q2: '',
+      Q3: '',
+      Q4: '',
+      Q5: '',
+      Q6: '',
+      Q7: '',
+      Q8: '',
+      Q9: '',
+      Q10:'',
+    })
+  }
+  showResults = () => {
+     // console.log(this.state.results.Object.keys(this.state.results)[0])
+       this.setState({
+         showResults: true
+       })
+
+       let displayQs = {}
+       for (let index = 0; index < Object.keys(questions).length; index++) {
+         const qKey = Object.keys(questions)[index];
+         const qVal =  Object.values(questions)[index]
+         
+          let toAdd = this.formatResults(qKey)
+          console.log(toAdd)
+        
+         displayQs[qKey] = toAdd
+
+          }
+
+          this.setState({
+            displayResults: displayQs
+          })
+
+        }
+  formatResults = (question) => {
+        //let noPeople = Object.keys(this.state.results).length -1
+        let peopleArray = Object.keys(this.state.results)
+        let order = this.shuffle(peopleArray)
+      const inputQ = question
+     let outputObj = {}
+
+      console.log(question)
+     
+
+    for (let index = 0; index < order.length; index++) {
+      const name = order[index];
+      let pointInObj = this.state.results[name]
+      let answer = pointInObj[inputQ]
+      
+      outputObj[name] = answer
+    }
+
+  
+        
+    return outputObj
+        }
+        
+        
+        
+        
+        shuffle = (array) => {
+          let currentIndex = array.length, temporaryValue, randomIndex;
+          
+          // While there remain elements to shuffle...
+          while (0 !== currentIndex) {
+        
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+            
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+          }
+          
+          return array;
+        }
+
+
+
+        mapDisplayAll = (question) => {
+          if (this.state.revealNames){
+          return Object.keys(this.state.displayResults[question]).map(key => {
+            return <p>{key}: {this.state.displayResults[question][key]}</p> 
+          })}else{
+          return Object.keys(this.state.displayResults[question]).map(key => {
+            return <p>{this.state.displayResults[question][key]}</p> 
+          })}
+
+
+
+        }
+        
+         
+        render() {
+          
+          return (
+    // <div className="App">
+    //   <header className="App-header">
+    //     <img src={logo} className="App-logo" alt="logo" />
+    //     <p>
+    //       Edit <code>src/App.js</code> and save to reload.
+    //     </p>
+    //     <a
+    //       className="App-link"
+    //       href="https://reactjs.org"
+    //       target="_blank"
+    //       rel="noopener noreferrer"
+    //     >
+    //       Learn React
+    //     </a>
+    //   </header>
+    // </div>
+<div>
+
+<header className="App-headerZZ">
+Christmas Quiz 2019
+
+</header>
+<br></br>
+<div style={{display: `${this.state.showResults ? 'none' : 'block'}`}}>
+<Form size='small' key='small' onSubmit={event => this.submitAnswers(event)}>
+<Form.Field>
+      <label>Name</label>
+      <input id='name' type='text' onChange={event => this.setName(event)} value={this.state.currentName} placeholder='Name' />
+    </Form.Field>
+    <Form.Field>
+      <label>Q1. {questions.Q1}</label>
+      <input id='Q1' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q1} placeholder='Answer' />
+    </Form.Field>
+    <Form.Field>
+      <label>Q2. {questions.Q2}</label>
+      <input id='Q2' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q2} placeholder='Answer' />
+    </Form.Field>
+    <Form.Field>
+      <label>Q3. {questions.Q3}</label>
+      <input id='Q3' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q3} placeholder='Answer' />
+    </Form.Field>
+    <Form.Field>
+      <label>Q4. {questions.Q4}</label>
+      <input id='Q4' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q4} placeholder='Answer' />
+    </Form.Field>
+    <Form.Field>
+      <label>Q5. {questions.Q5}</label>
+      <input id='Q5' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q5} placeholder='Answer' />
+    </Form.Field>
+    <Form.Field>
+      <label>Q6. {questions.Q6}</label>
+      <input id='Q6' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q6} placeholder='Answer' />
+    </Form.Field>
+    <Form.Field>
+      <label>Q7. {questions.Q7}</label>
+      <input id='Q7' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q7} placeholder='Answer' />
+    </Form.Field>
+    <Form.Field>
+      <label>Q8. {questions.Q8}</label>
+      <input id='Q8' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q8} placeholder='Answer' />
+    </Form.Field>
+    <Form.Field>
+      <label>Q9. {questions.Q9}</label>
+      <input id='Q9' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q9} placeholder='Answer' />
+    </Form.Field>
+    <Form.Field>
+      <label>Q10. {questions.Q10}</label>
+      <input id='Q10' type='text' onChange={event => this.setAnswer(event)} value={this.state.Q10} placeholder='Answer' />
+    </Form.Field>
+    
+    <Button type='submit'>Submit</Button>
+  </Form>
+<br></br>
+<br></br>
+    <Button style={{display: `${this.state.buttonReveal ? 'block' : 'none'}`}} onClick={event => this.showResults()}>Show Results</Button>
+
+</div>
+
+
+<div style={{display: `${!this.state.showResults ? 'none' : 'block'}`}}>
+<Button onClick={event => this.setState({revealNames: !this.state.revealNames})}>Reveal Names</Button>
+
+<h4>Q1. {questions.Q1}</h4>
+<p>{this.state.displayResults ? this.mapDisplayAll('Q1') : ''}</p>
+
+</div>
+
+
+</div>
+
+
+
+
+  );
+}
+}
+
+export default App;
